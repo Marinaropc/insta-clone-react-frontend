@@ -8,6 +8,9 @@ import {
   useRouteError,
 } from "react-router";
 import stylesheet from "./app.css?url";
+import { Header } from "./components/Header";
+import { BottomNav } from "./components/BottomNav";
+import "./app.css";
 
 export function links() {
   return [{ rel: "stylesheet", href: stylesheet }];
@@ -21,6 +24,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <Meta />
         <Links />
+        <script src="https://cdn.tailwindcss.com"></script>
+        {/* (optional) tweak defaults */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              tailwind.config = {
+                theme: {
+                  extend: {
+                    colors: { brand: { DEFAULT: '#2563eb' } }
+                  }
+                }
+              }
+            `,
+          }}
+        />
       </head>
       <body className='min-h-screen bg-gray-50 text-gray-800'>
         {children}
@@ -34,17 +52,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <>
-      <header className='sticky top-0 z-50 w-full border-b bg-white'>
-        <nav className='container mx-auto px-4 py-3'>
-          <h1 className='text-xl font-bold'>Instagram</h1>
-        </nav>
-      </header>
+      <Header />
       <main className='container mx-auto p-4'>
         <Outlet />
       </main>
-      <footer className='py-4 text-center text-sm text-gray-500'>
-        <p>&copy; 2025 Webeet</p>
-      </footer>
+      <BottomNav />
     </>
   );
 }
