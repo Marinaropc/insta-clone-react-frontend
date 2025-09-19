@@ -4,7 +4,7 @@ import { z } from "zod";
 const highlightSchema = z.object({
     id: z.number(),
     img_url: z.string().url(),
-    title: z.string(),
+    title: z.string().nullable().optional(),
     created_at: z.string(),
 })
 

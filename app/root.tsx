@@ -10,6 +10,7 @@ import {
 import stylesheet from "./app.css?url";
 import { Header } from "./components/Header";
 import { BottomNav } from "./components/BottomNav";
+import "./app.css";
 
 export function links() {
   return [{ rel: "stylesheet", href: stylesheet }];
@@ -23,6 +24,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <Meta />
         <Links />
+        <script src="https://cdn.tailwindcss.com"></script>
+        {/* (optional) tweak defaults */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              tailwind.config = {
+                theme: {
+                  extend: {
+                    colors: { brand: { DEFAULT: '#2563eb' } }
+                  }
+                }
+              }
+            `,
+          }}
+        />
       </head>
       <body className='min-h-screen bg-gray-50 text-gray-800'>
         {children}

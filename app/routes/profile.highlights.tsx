@@ -23,6 +23,9 @@ const Highlights= () => {
         <>
             { !fullscreen &&
                 <div className="flex flex-col gap-1">
+                    {highlights.length === 0 && (
+                        <p className="text-center text-gray-500">No highlights yet</p>
+                    )}
                     <div onClick={() => setFullscreen(!fullscreen)}>
                         {highlights.map((highlight) => (
                             <HighlightBubble

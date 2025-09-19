@@ -1,4 +1,4 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { useLoaderData, type LoaderFunctionArgs, useRouteError } from "react-router";
 import { api } from "~/services/api";
 // Assume you have a highlight schema and a HighlightStory component
 import { highlightSchema, type Highlight } from "~/schemas/highlight.schema";
@@ -25,3 +25,14 @@ export async function loader({ params }: LoaderFunctionArgs) {
       </div>
     );
   }
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+
+  return (
+    <div className="text-center p-4">
+      <h1 className="text-xl font-bold">Highlight not found</h1>
+      <p className="text-gray-500">The highlight you’re looking for doesn’t exist.</p>
+    </div>
+  );
+}
